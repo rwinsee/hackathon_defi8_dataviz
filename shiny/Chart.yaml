@@ -1,0 +1,14 @@
+# Version de l'API Helm utilisée pour ce Chart
+apiVersion: v2 # Spécifie que ce Chart utilise Helm version 2 ou ultérieure. C'est la version recommandée pour Helm moderne.
+
+# Nom du Chart Helm
+name: shiny-app-template # Nom du Chart. Ce nom est utilisé pour identifier le Chart dans un dépôt ou lors de son installation.
+
+# Version du Chart
+version: 1.0.0 # Version du Chart. C'est différent de la version de l'application. Utilisé pour suivre les mises à jour du Chart.
+
+# Dépendances utilisées par ce Chart
+dependencies: # Liste des dépendances nécessaires pour le Chart.
+  - name: shiny # Nom de la dépendance. Ici, il s'agit du Chart Helm pour une application Shiny.
+    version: 1.1.0 # Version de la dépendance.
+    repository: https://inseefrlab.github.io/helm-charts # URL du dépôt où se trouve le Chart dépendant (maintenu par Insee FRLab).

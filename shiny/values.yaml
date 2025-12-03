@@ -1,0 +1,35 @@
+shiny:
+
+  image:
+    repository: rwinsee/app_shiny_climat # Image Docker de l'app
+    tag: "latest" # Utilise la dernière version de votre image Docker
+    pullPolicy: Always # Toujours tirer la dernière version de l'image
+  
+  ingress:
+    enabled: true # Active l'Ingress pour exposer l'app
+    hostname: hackathon_climat_defi8.lab.sspcloud.fr # URL pour accéder à l'app
+    annotations: # Ajouter les annotations nécessaires pour NGINX
+      nginx.ingress.kubernetes.io/rewrite-target: "/"
+    tls:
+      enabled: true # Active TLS pour HTTPS
+      hosts:
+        - hackathon_climat_defi8.lab.sspcloud.fr # Le même domaine
+      secretName: hackathon_climat_defi8-tls # Nom du secret TLS
+  
+  s3:
+    enabled: false # Désactivé car pas besoin d'intégration avec S3
+    existingSecret: "" # Ajoute un secret si utilise S3 pour stockage de fichiers
+  
+  postgresql:
+    enabled:
+      internal: false
+      external: false
+    # Désactivé car n'utilise pas une bdd PostgreSQL
+    
+   resources:
+    limits: # Limites des ressources utilisées par le conteneur
+      cpu: 500m # Limite CPU : 500 milli-cores
+      memory: 512Mi # Limite mémoire : 512 MiB
+    requests: # Ressources minimum demandées pour le conteneur
+      cpu: 250m # Demande CPU : 250 milli-cores
+      memory: 256Mi # Demande mémoire : 256 MiB
